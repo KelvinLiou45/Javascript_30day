@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+
+<!-- data.* 是html5的標籤，可被指定為"標籤"被JS選取 -->
+<!-- 監聽事件 transitionend 會在css的transition結束時觸發 -->
+<!-- 監聽事件的function都會有一個隱藏參數e，可以用console.log()來找到需要的資訊 -->
+
+<body>
+    <div class="container">
+        <div data-key="65" class="key">
+            <kbd>A</kbd>
+            <p class="sound">clap</p>
+        </div>
+        <div data-key="83" class="key">
+            <kbd>S</kbd>
+            <p class="sound">hihat</p>
+        </div>
+        <div data-key="68" class="key">
+            <kbd>D</kbd>
+            <p class="sound">kick</p>
+        </div>
+        <div data-key="70" class="key">
+            <kbd>F</kbd>
+            <p class="sound">openhat</p>
+        </div>
+    </div>
+    <audio data-key="65" src="sounds/clap.wav"></audio>
+    <audio data-key="83" src="sounds/hihat.wav"></audio>
+    <audio data-key="68" src="sounds/kick.wav"></audio>
+    <audio data-key="70" src="sounds/openhat.wav"></audio>
+
+    <script>
+        function removeTransition(e) {
+            // console.log(e.target);
+            e.target.classList.remove("active");
+        }
+        function playSound(e) {
+            let key = document.querySelector(`div[data-key="${e.keyCode}"]`);
+            let audio = document.querySelector(`audio[data-key="${e.keyCode}"]`);
+            if (!key) return; //如果沒找到對應元素 則返回
+
+            key.classList.add("active");
+            audio.currentTime = 0;
+            audio.play();
+        }
+
+        let key = document.getElementsByClassName("key");
+        for (let i = 0; i < key.length; i++) {
+            key[i].addEventListener("transitionend", removeTransition);
+        }
+        window.addEventListener("keydown", playSound);
+    </script>
+</body>
+
+</html>
