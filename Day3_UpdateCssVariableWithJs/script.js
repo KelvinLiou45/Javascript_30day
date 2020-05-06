@@ -9,6 +9,14 @@ spacing.addEventListener("mousemove",function(){
 blur.addEventListener("mousemove",function(){
     image.style.filter = `blur(${this.value}px)`;
 })
+
+spacing.addEventListener("change",function(){
+    image.style.padding = `${this.value}px`;
+})
+blur.addEventListener("change",function(){
+    image.style.filter = `blur(${this.value}px)`;
+})
+
 baseColor.addEventListener("change",function(){
     image.style.background = `${this.value}`;
     colorJs.style.color = `${this.value}`;
