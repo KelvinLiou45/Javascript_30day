@@ -11,10 +11,19 @@ function playSound(e) {
     audio.currentTime = 0;
     audio.play();
 }
+function playSound2(e){
+    let keyCode = e.toElement.dataset.key;
+    let key = document.querySelector(`div[data-key="${keyCode}"]`);
+    let audio = document.querySelector(`audio[data-key="${keyCode}"]`);
+
+    key.classList.add("active");
+    audio.currentTime = 0;
+    audio.play();
+}
 
 let key = document.getElementsByClassName("key");
 for (let i = 0; i < key.length; i++) {
-    key[i].addEventListener("click", playSound);
+    key[i].addEventListener("click", playSound2);
     key[i].addEventListener("transitionend", removeTransition);
 }
 window.addEventListener("keydown", playSound);
