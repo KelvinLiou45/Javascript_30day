@@ -1,0 +1,47 @@
+:root {
+  --spacing: 10px;
+  --blur: 10px;
+  --base: #ffc600;
+}
+
+#colorJs {
+  color: var(--base);
+}
+
+.container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.container .control {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+}
+
+.container .control h3 {
+  margin-left: 50px;
+  margin-right: 10px;
+}
+
+.container .image {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: flex-start;
+  margin-top: 50px;
+  height: 300px;
+  width: 300px;
+}
+
+.container .image img {
+  height: 100%;
+  width: 100%;
+
+  padding: var(--spacing);
+  background: var(--base);
+  filter: blur(var(--blur));
+}
